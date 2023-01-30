@@ -1,0 +1,28 @@
+baseURL: "https://iagobozza.com/"
+theme: "gitlab.com/writeonlyhugo/writeonlyhugo-theme"
+languageCode: "en-us"
+
+title: "Iago Bozza"
+author: "Iago Bozza"
+
+# googleAnalytics: ""
+
+params:
+  title: "Iago Bozza"
+  description: >
+    A blog dedicated to all things programming, including but not limited to:
+    Parsing, HTML5, CSS3, JavaScript, Hugo, Ruby, Rails, React, Redux.
+
+  images: []
+
+taxonomies:
+  categories: "categories"
+  series: "series"
+  tags: "tags"
+
+markup:
+  highlight:
+    style: "dracula"
+
+minify:
+  minifyOutput: true

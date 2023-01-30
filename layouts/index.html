@@ -1,0 +1,24 @@
+{{ define "main" }}
+<main class="container my-5 py-5 flex-grow-1 d-flex flex-column justify-content-center">
+  <div class="row justify-content-center">
+    <div class="col-12 mw-md mh-100">
+      {{ with .Title }}
+        <h1 class="display-1 text-center ext-uppercase fwbold tex-primary">
+          {{ . }}
+        </h1>
+      {{ end }}
+      {{ with .Description }}
+        <p class="lead text-center">
+          {{ . }}
+        </p>
+      {{ end }}
+      <div class="py-4">
+          <div class="markdown-content py-2">
+            {{ .Content }}
+          </div>
+      </div>
+    </div>
+  </div>
+</main>
+{{ end }}
+
