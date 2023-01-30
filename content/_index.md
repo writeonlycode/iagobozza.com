@@ -1,8 +1,8 @@
 ---
-title: "Hi!"
+title: "Iago Bozza"
 description: >
-  I'm Iago Bozza - a full-stack developer who works with Ruby on Rails,
-  Express, React and Hugo to create dynamic and static websites.
+  Hi, I'm **Iago Bozza**, a full-stack developer who works with Rails, Express,
+  React and Hugo to create dynamic and static websites.
 images: []
 videos: []
 series: []
@@ -13,7 +13,7 @@ weight: 20
 
 {{<profile "/images/iagobozza-landscape.png" "Iago Bozza's Picture">}}
 
-Hi! I'm **Iago Bozza**, a philosoher-turned-software-engeneering.
+Hi! I'm **Iago Bozza**, a philosoher-turned-software-engineer.
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque convallis
 pharetra lectus eu pharetra. Vivamus tellus eros, placerat ut ex ac, porta
@@ -27,17 +27,13 @@ vel augue vel mi bibendum sodales. Sed viverra pretium arcu, nec luctus massa
 pellentesque vel. Aliquam dignissim felis a elementum pulvinar. Vivamus eu est
 vel ex mollis ornare non vel libero. Fusce bibendum velit ac vehicula mattis.
 
-One of the things I cherish the most is learning: (...).
-
 # Projects
 
-I have a few projects that I built for personal use: I built SEP-API to
-practice working with Express, and Metronomify to manage my guitar practice
-routine.
-
-I've also done dozens of Hugo wesites, including this one! You can check out my
-[Fiverr profile](https://www.fiverr.com/writeonlycode) if you are interested in
-taking a look at the real projects I've done, and testimonials from clients!
+I have a few portfolio projects listed below if you are interested in seeing
+some things that I built. I've also done dozens of Hugo wesites, including this
+one! You can check out my [Fiverr
+profile](https://www.fiverr.com/writeonlycode) if you are interested in taking
+a look at the real projects I've done, and testimonials from clients!
 
 ## SEP-API
 
@@ -87,8 +83,10 @@ Philosophy.
 - **Federal University of Ouro Preto** - Bachelor and Licentiate in Philosophy, 2006-2012.
 
 If you want to check out my master's dissertation (in Portuguese), you can find
-it here. And if you want to check out my Ph.D. thesis (in English), you can find it
-here.
+it
+[here](https://ppglm.files.wordpress.com/2008/12/dissertacao-ppglm-iago-francisco.pdf).
+And if you want to check out my Ph.D. thesis (in English), you can find it
+[here](https://scholarship.miami.edu/esploro/outputs/doctoral/The-Nature-of-Knowability-and-the-Knowability-Paradox/991031496187802976).
 
 # Certificates
 
@@ -119,7 +117,7 @@ out my GitHub profile, or send me a message through Twitter or Fiverr!
 
 ## Email
 
-[myself@iagobozza.com](mailto:myself@iagobozza.com)
+[iagobozza@writeonlycode.com](mailto:myself@iagobozza.com)
 
 ## Github
 

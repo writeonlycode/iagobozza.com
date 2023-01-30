@@ -9,7 +9,7 @@
       {{ end }}
       {{ with .Description }}
         <p class="lead text-center">
-          {{ . }}
+          {{ . | markdownify }}
         </p>
       {{ end }}
       <div class="py-4">
