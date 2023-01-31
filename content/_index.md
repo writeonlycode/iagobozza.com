@@ -90,6 +90,11 @@ And if you want to check out my Ph.D. thesis (in English), you can find it
 
 # Certificates
 
+I'm currently working through the
+[OSSU](https://github.com/ossu/computer-science) curriculum to fill in some of
+the gaps in my computer science formation. Some of the courses I've already
+finished are listed below.
+
 ## Programming Languages
 
 I've completed the course [Programming Languages, Part

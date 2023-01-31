@@ -1,3 +1,13 @@
-<div class="mx-auto my-4 float-lg-end ratio ratio-1x1 w-25">
-  <img class="object-fit-cover rounded-circle shadow-lg" src="{{ .Get 0 }}" alt="{{ .Get 1 }}">
-</div>
+{{ $src := .Get 0 }}
+{{ $alt := .Get 1 }}
+{{ $image := resources.Get $src }}
+{{ with $image }}
+  <picture class="mx-auto my-4 float-lg-end ratio ratio-1x1 w-25">
+    <source media="(min-width: 1400px)" type="image/webp" srcset="{{ (.Resize "1400x webp").Permalink }}" />
+    <source media="(min-width: 1200px)" type="image/webp" srcset="{{ (.Resize "1200x webp").Permalink }}" />
+    <source media="(min-width: 992px)" type="image/webp" srcset="{{ (.Resize "992x webp").Permalink }}" />
+    <source media="(min-width: 768px)" type="image/webp" srcset="{{ (.Resize "768x webp").Permalink }}" />
+    <source media="(min-width: 576px)" type="image/webp" srcset="{{ (.Resize "576x webp").Permalink }}" />
+    <img class="object-fit-cover rounded-circle shadow-lg" src="{{ $image.Permalink }}" alt="{{ $alt }}">
+  </picture>
+{{ end }}
