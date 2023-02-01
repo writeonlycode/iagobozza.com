@@ -13,19 +13,13 @@ weight: 20
 
 {{<profile "/images/iagobozza-landscape.png" "Iago Bozza's Picture">}}
 
-Hi! I'm **Iago Bozza**, a philosoher-turned-software-engineer.
+Hi, I'm **Iago Bozza**, a philosoher-turned-software-engineer!
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque convallis
-pharetra lectus eu pharetra. Vivamus tellus eros, placerat ut ex ac, porta
-viverra nibh. Orci varius natoque penatibus et magnis dis parturient montes,
-nascetur ridiculus mus. Nullam porta justo sed risus blandit, sit amet
-tristique turpis porta. Aliquam sollicitudin libero pulvinar, pulvinar sem
-eget, pellentesque magna. Nulla ultricies, erat ac volutpat congue, neque nisl
-ullamcorper quam, eget molestie magna arcu et nisi. Integer a dictum mauris.
-Morbi fermentum enim lectus, sit amet consectetur felis semper ornare. Donec
-vel augue vel mi bibendum sodales. Sed viverra pretium arcu, nec luctus massa
-pellentesque vel. Aliquam dignissim felis a elementum pulvinar. Vivamus eu est
-vel ex mollis ornare non vel libero. Fusce bibendum velit ac vehicula mattis.
+I work as a freelance web developer (mostly frontend, but some backend too)
+through Fiverr, but right now I'm looking to move more towards back-end related
+work, and to find a more permanent job in a company where I can work with and
+learn from other developers.
+
 
 # Projects
 
