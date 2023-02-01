@@ -92,9 +92,11 @@ finished are listed below.
 ## Programming Languages
 
 I've completed the course [Programming Languages, Part
-A](https://www.coursera.org/learn/programming-languages), offered by the
-**University of Washington** through the online learning platform **Coursera**.
-You can check out the certificate
+A](https://www.coursera.org/learn/programming-languages) and [Programming
+Languages, Part
+B](https://www.coursera.org/learn/programming-languages-part-b/home/welcome)
+offered by the **University of Washington** through the online learning
+platform **Coursera**. You can check out the certificate
 [here](https://coursera.org/share/2d7103f032703fe76479014d6e317bcd)!
 
 ## How to Code: Simple and Complex Data  
