@@ -24,7 +24,7 @@ learn from other developers.
 # Projects
 
 I have a few portfolio projects listed below if you are interested in seeing
-some things that I built. I've also done dozens of Hugo wesites, including this
+some things that I built. I've also done dozens of Hugo websites, including this
 one! You can check out my [Fiverr
 profile](https://www.fiverr.com/writeonlycode) if you are interested in taking
 a look at the real projects I've done, and testimonials from clients!
@@ -35,7 +35,7 @@ a look at the real projects I've done, and testimonials from clients!
 
 SEP-API is an unofficial RESTful API for the Stanford Encyclopedia of
 Philosophy powered by Node & Express. The official SEP website is scraped
-periodically, and access its entries' contents is provided through a modern
+periodically, and access to its entries' contents is provided through a modern
 RESTful API.
 
 
@@ -118,7 +118,7 @@ out my GitHub profile, or send me a message through Twitter or Fiverr!
 
 ## Email
 
-[iagobozza@writeonlycode.com](mailto:myself@iagobozza.com)
+[iagobozza@writeonlycode.io](mailto:myself@iagobozza.io)
 
 ## Github
 
