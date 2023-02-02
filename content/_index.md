@@ -118,7 +118,7 @@ out my GitHub profile, or send me a message through Twitter or Fiverr!
 
 ## Email
 
-[iagobozza@writeonlycode.io](mailto:myself@iagobozza.io)
+[iagobozza@writeonlycode.io](mailto:iagobozza@writeonlycode.io)
 
 ## Github
 
