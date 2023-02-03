@@ -123,7 +123,7 @@ out my GitHub profile, or send me a message through Twitter or Fiverr!
 
 ## Github
 
-[github.com/iagobozza](https://github.com/iagobozza)
+[github.com/writeonlycode](https://github.com/writeonlycode)
 
 ## Twitter
 
