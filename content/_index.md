@@ -96,8 +96,9 @@ A](https://www.coursera.org/learn/programming-languages) and [Programming
 Languages, Part
 B](https://www.coursera.org/learn/programming-languages-part-b/home/welcome)
 offered by the **University of Washington** through the online learning
-platform **Coursera**. You can check out the certificate
-[here](https://coursera.org/share/2d7103f032703fe76479014d6e317bcd)!
+platform **Coursera**. You can check out the certificates
+[here](https://coursera.org/share/2d7103f032703fe76479014d6e317bcd) and
+[here](https://coursera.org/share/9f0510ef8e4bea01927638bf80912afc)!
 
 ## How to Code: Simple and Complex Data  
 
