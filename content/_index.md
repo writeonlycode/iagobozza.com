@@ -1,4 +1,8 @@
 ---
+title: "Iago Bozza"
+description: >
+  Hi, I'm **Iago Bozza**, a full-stack developer who works with Rails, Express,
+  React and Hugo to create dynamic web applicaions and static websites.
 images: []
 videos: []
 series: []
