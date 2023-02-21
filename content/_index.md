@@ -1,8 +1,4 @@
 ---
-title: "Iago Bozza"
-description: >
-  Hi, I'm **Iago Bozza**, a full-stack developer who works with Rails, Express,
-  React and Hugo to create dynamic and static websites.
 images: []
 videos: []
 series: []
@@ -13,13 +9,31 @@ weight: 20
 
 {{<profile "/images/iagobozza-landscape.png" "Iago Bozza's Picture">}}
 
-Hi, I'm **Iago Bozza**, a philosoher-turned-software-engineer!
+I am a software engineer with experience in both back-end and front-end
+development. I have expertise in Ruby on Rails, Node and Hugo, as well as
+experience with a range of other technologies. With a background in philosophy,
+I bring a unique perspective to software development and excel at
+problem-solving and critical thinking. I am currently seeking a back-end
+developer role where I can apply my technical skills and passion for software
+development to make a meaningful contribution to a team.
 
-I work as a freelance web developer (mostly frontend, but some backend too)
-through Fiverr, but right now I'm looking to move more towards back-end related
-work, and to find a more permanent job in a company where I can work with and
-learn from other developers.
+# Skills
 
+Ruby, Rails, JavaScript, Node, Express, Hugo, React, Redux, React-Query,
+PostgreSQL, MongoDB, Functional Programming, Object-Oriented Programming.
+
+# Experience
+
+- **Freelance Hugo Developer, Fiverr** - _Hugo Developer (2020-present)_ 
+
+  - Completed over 80 orders as a Hugo developer on Fiverr, maintaining an
+  5-star rating average.
+
+  - Developed custom Hugo themes for various clients, including portfolio
+    pages, documentation websites, blogs, and company landing pages.
+
+  - Collaborated with clients to determine project requirements and provide
+    ongoing support throughout the development process.
 
 # Projects
 
@@ -82,7 +96,7 @@ it
 And if you want to check out my Ph.D. thesis (in English), you can find it
 [here](https://scholarship.miami.edu/esploro/outputs/doctoral/The-Nature-of-Knowability-and-the-Knowability-Paradox/991031496187802976).
 
-# Certificates
+# Courses and Certificates
 
 I'm currently working through the
 [OSSU](https://github.com/ossu/computer-science) curriculum to fill in some of
@@ -91,14 +105,17 @@ finished are listed below.
 
 ## Programming Languages
 
-I've completed the course [Programming Languages, Part
-A](https://www.coursera.org/learn/programming-languages) and [Programming
+Completed the course [Programming Languages, Part
+A](https://www.coursera.org/learn/programming-languages), [Programming
 Languages, Part
-B](https://www.coursera.org/learn/programming-languages-part-b/home/welcome)
+B](https://www.coursera.org/learn/programming-languages-part-b/),
+and [Programming Languages, Part
+C](https://www.coursera.org/learn/programming-languages-part-c) 
 offered by the **University of Washington** through the online learning
 platform **Coursera**. You can check out the certificates
-[here](https://coursera.org/share/2d7103f032703fe76479014d6e317bcd) and
-[here](https://coursera.org/share/9f0510ef8e4bea01927638bf80912afc)!
+[here](https://coursera.org/share/2d7103f032703fe76479014d6e317bcd),
+[here](https://coursera.org/share/9f0510ef8e4bea01927638bf80912afc) and
+[here](https://coursera.org/share/b2b27e4dcd85474ac9a6c5ed2cc612cb).
 
 ## How to Code: Simple and Complex Data  
 
@@ -119,7 +136,7 @@ out my GitHub profile, or send me a message through Twitter or Fiverr!
 
 ## Email
 
-[iagobozza@writeonlycode.io](mailto:iagobozza@writeonlycode.io)
+[myself@iagobozza.com](mailto:myself@iagobozza.com)
 
 ## Github
 
