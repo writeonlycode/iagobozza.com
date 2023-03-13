@@ -23,21 +23,30 @@ development to make a meaningful contribution to a team.
 
 # Skills
 
-Ruby, Rails, JavaScript, Node, Express, Hugo, React, Redux, React-Query,
-PostgreSQL, MongoDB, Functional Programming, Object-Oriented Programming.
+Ruby, JavaScript, Go, Java, Rails, Devise, OAuth, RSpec, Node, Express,
+Fastify, React, Redux, React-Query, PostgreSQL, MongoDB, Hugo, AWS, Heroku,
+Railway, Render, Git, HTML, CSS, TDD.
 
 # Experience
 
 - **Freelance Hugo Developer, Fiverr** - _Hugo Developer (2020-present)_ 
 
-  - Completed over 80 orders as a Hugo developer on Fiverr, maintaining an
-  5-star rating average.
+  - Successfully completed 80+ orders as a top-rated Hugo developer on Fiverr,
+  earning consistent 5-star ratings for quality and reliability.
 
-  - Developed custom Hugo themes for various clients, including portfolio
-    pages, documentation websites, blogs, and company landing pages.
+  - Designed and developed bespoke Hugo themes for diverse clients, from
+  individual bloggers to small businesses and large corporations, meeting and
+  exceeding their unique requirements.
 
-  - Collaborated with clients to determine project requirements and provide
-    ongoing support throughout the development process.
+- **Philosophy Instructor, University of Miami** - _Instructor (2015-2020)_ 
+
+  - Led courses in logic, critical thinking, philosophy of science,
+  epistemology, philosophy of mind, metaphysics, and contemporary moral issues,
+  guiding students through complex concepts.
+
+  - Developed and implemented engaging lesson plans that fostered intellectual
+  curiosity, critical analysis, and creative problem-solving skills.
+
 
 # Projects
 
