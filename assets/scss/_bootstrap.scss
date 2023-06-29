@@ -22,6 +22,7 @@
 // flat) between larger components.
 
 $nord0: #2E3440;
+$nord1: #3B4252;
 
 $nord6: #ECEFF4;
 
@@ -87,7 +88,6 @@ $container-max-widths: (
 @import "../bootstrap/scss/utilities/api";
 
 // 8. Add additional custom code here
-.img-rounded-sm {
-  
-
+pre {
+  background-color: $nord1 !important;
 }

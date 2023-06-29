@@ -10,8 +10,8 @@ author: "Iago Bozza"
 params:
   title: "Iago Bozza"
   description: >
-    A blog dedicated to all things programming, including but not limited to:
-    Parsing, HTML5, CSS3, JavaScript, Hugo, Ruby, Rails, React, Redux.
+    Hi, I'm **Iago Bozza**, a full-stack developer who works with Rails, Express,
+    React and Hugo to create dynamic and static websites.
 
   images: []
 
@@ -22,7 +22,7 @@ taxonomies:
 
 markup:
   highlight:
-    style: "dracula"
+    style: "nord"
 
 minify:
   minifyOutput: true

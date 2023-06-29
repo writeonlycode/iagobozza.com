@@ -1,8 +1,8 @@
 ---
 title: "Iago Bozza"
 description: >
-  Hi, I'm **Iago Bozza**, a full-stack developer who works with Rails, Express,
-  React and Hugo to create dynamic web applicaions and static websites.
+  Hi, I'm **Iago Bozza**, a full-stack developer who works with Rails, React,
+  Next.js, and Hugo to create dynamic web applicaions and static websites.
 images: []
 videos: []
 series: []
@@ -13,10 +13,10 @@ weight: 20
 
 {{<profile "/images/iagobozza-landscape.png" "Iago Bozza's Picture">}}
 
-I am a software engineer with experience in both back-end and front-end
-development. I have expertise in Ruby on Rails, Node and Hugo, as well as
-experience with a range of other technologies. With a background in philosophy,
-I bring a unique perspective to software development and excel at
+I am a web developer with experience in both back-end and front-end
+development. I have experience with Ruby on Rails, React, Next.js and Hugo, as
+well as experience with a range of other technologies. With a background in
+philosophy, I bring a unique perspective to software development and excel at
 problem-solving and critical thinking. I am currently seeking a back-end
 developer role where I can apply my technical skills and passion for software
 development to make a meaningful contribution to a team.
@@ -24,8 +24,8 @@ development to make a meaningful contribution to a team.
 # Skills
 
 Ruby, JavaScript, Go, Java, Rails, Devise, OAuth, RSpec, Node, Express,
-Fastify, React, Redux, React-Query, PostgreSQL, MongoDB, Hugo, AWS, Heroku,
-Railway, Render, Git, HTML, CSS, TDD.
+Fastify, React, Next.js, Redux, React-Query, PostgreSQL, MongoDB, Hugo, AWS,
+Heroku, Railway, Render, Git, HTML, CSS, TDD.
 
 # Experience
 

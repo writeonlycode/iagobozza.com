@@ -1,6 +1,6 @@
-module gitlab.com/writeonlycode/writeonlycode.gitlab.io.git
+module github.com/writeonlycode/writeonlyhugo
 
-// replace gitlab.com/writeonlyhugo/writeonlyhugo-theme => /home/iagobozza/Programming/hugo/writeonlyhugo-theme
+replace github.com/writeonlycode/writeonlyhugo => /home/iagobozza/Programming/hugo/writeonlyhugo-theme
 
 go 1.17
 
