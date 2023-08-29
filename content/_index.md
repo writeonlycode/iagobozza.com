@@ -11,7 +11,7 @@ categories: []
 weight: 20
 ---
 
-{{<profile "/images/7691414f-b7f2-46e9-a164-a8cb1151106d.jpg" "Iago Bozza's Picture">}}
+{{<profile "/images/profile-picture.png" "Iago Bozza's Picture">}}
 
 I am a web developer with experience in both back-end and front-end
 development. I have experience with Ruby on Rails, React, Next.js and Hugo, as
