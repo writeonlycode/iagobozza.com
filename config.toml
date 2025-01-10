@@ -1,0 +1,36 @@
+# The URL the site will be built for
+base_url = "https://iagobozza.com"
+title = "Iago Bozza"
+
+theme = "terminimal"
+
+compile_sass = true
+generate_feeds = true
+feed_filenames = ["rss.xml", "atom.xml"]
+build_search_index = true
+
+taxonomies = [
+    {name = "tags"}
+]
+
+[markdown]
+highlight_code = true
+highlight_theme = "boron"
+
+[extra]
+
+logo_text = "Iago Bozza"
+author = "Iago Bozza"
+copyright_html = " "
+
+accent_color = "red-auto"
+background_color = "auto"
+
+page_titles = "combined"
+
+menu_items = [
+    {name = "tags", url = "$BASE_URL/tags"},
+    {name = "archive", url = "$BASE_URL/archive"},
+    {name = "about", url = "$BASE_URL/about"},
+    {name = "github", url = "https://github.com/writeonlycode/", newtab = true},
+]
