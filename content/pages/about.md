@@ -6,8 +6,9 @@ path = "about"
 Cheers!
 
 I'm Iago Bozza, a philosopher-turned-software engineer. I work mostly with web
-development using Hugo SSG, Next.JS & Supabase, and I'm currently working my
-way through OSSU and learning Rust along the way.
+development using Hugo SSG, Next.JS & Supabase, and I’m currently diving deep
+into the Rust programming language as I progress through the
+[OSSU](https://github.com/ossu/computer-science) curriculum.
 
 Below you can find a little bit about me!
 
@@ -23,10 +24,10 @@ Below you can find a little bit about me!
 
 # Courses
 
-- **Programming Languages**
+- **Programming Languages**\
   Completed the course Programming Languages, Part A, Part B, and Part C offered by the University of Washington through the online learning platform Coursera.
 
-- **How to Code: Simple and Complex Data**
+- **How to Code: Simple and Complex Data**\
   HtC1x: How to Code: Simple Data and HtC2x: How to Code: Complex Data, offered by the University of British Columbia through the online learning platform edX.
 
 # Education
