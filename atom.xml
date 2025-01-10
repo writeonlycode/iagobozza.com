@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Iago Bozza</title>
+    <link rel="self" type="application/atom+xml" href="https://iagobozza.com/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://iagobozza.com"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2025-01-10T00:00:00+00:00</updated>
+    <id>https://iagobozza.com/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Hello World!</title>
+        <published>2025-01-10T00:00:00+00:00</published>
+        <updated>2025-01-10T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Iago Bozza
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://iagobozza.com/hello-world/"/>
+        <id>https://iagobozza.com/hello-world/</id>
+        
+        <content type="html" xml:base="https://iagobozza.com/hello-world/">&lt;p&gt;Hello, world! 👋&lt;&#x2F;p&gt;
+&lt;p&gt;Welcome to my corner of the web, where I share experiments with code, and the
+occasional reflection on the intersection of logic and software engineering.&lt;&#x2F;p&gt;
+&lt;p&gt;I&#x27;m Iago Bozza — a philosopher-turned-software engineer. I specialize in
+building sites with Hugo, Next.js, and Supabase, and I’m currently diving deep
+into Rust as I progress through the OSSU curriculum.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;what-you-ll-find-here&quot;&gt;What You’ll Find Here&lt;&#x2F;h2&gt;
+&lt;p&gt;This blog is a space where I write about computer science and software
+development. Whether it’s design principles, programming languages, or tools I
+love (like Rust), you&#x27;ll find posts that aim to inform and inspire.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;a-little-about-me&quot;&gt;A Little About Me&lt;&#x2F;h2&gt;
+&lt;p&gt;Before venturing into the tech industry, I taught philosophy at the University
+of Miami, where I dealt with topics like logic, metaphysics, and epistemology.
+These experiences shaped my approach to problem-solving and structured
+thinking—skills I now apply to software engineering.&lt;&#x2F;p&gt;
+&lt;p&gt;Feel free to connect with me via GitHub or check out my &quot;About&quot; page for more
+details about my work and background.&lt;&#x2F;p&gt;
+&lt;p&gt;Thanks for stopping by, and cheers to learning together! 🎉&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>
