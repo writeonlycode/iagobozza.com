@@ -3,14 +3,14 @@ name: Publish demo on GitHub Pages
 on:
  push:
   branches:
-   - Main
+   - master
 
 jobs:
   build:
     name: Publish Site
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout Main
+    - name: Checkout Master
       uses: actions/checkout@v3.0.0
     - name: Build and Deploy
       uses: shalzz/zola-deploy-action@master
