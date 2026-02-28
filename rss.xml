@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+      <title>Iago Bozza</title>
+      <link>https://iagobozza.com</link>
+      <description></description>
+      <generator>Zola</generator>
+      <language>en</language>
+      <atom:link href="https://iagobozza.com/rss.xml" rel="self" type="application/rss+xml"/>
+      <lastBuildDate>Fri, 27 Feb 2026 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>Learning HashMaps in Rust by Solving 10 Small Problems</title>
+          <pubDate>Fri, 27 Feb 2026 00:00:00 +0000</pubDate>
+          <author>Iago Bozza</author>
+          <link>https://iagobozza.com/learning-rust-hashmaps-through-exercises/</link>
+          <guid>https://iagobozza.com/learning-rust-hashmaps-through-exercises/</guid>
+          <description xml:base="https://iagobozza.com/learning-rust-hashmaps-through-exercises/">&lt;p&gt;HashMaps are one of the most common data structures in Rust, and also one of
+the first places where ownership, borrowing, and references really start to
+matter.&lt;&#x2F;p&gt;
+&lt;p&gt;This post walks through 10 progressively more complex exercises that cover
+almost every practical HashMap pattern you&#x27;ll use in real Rust code. Each
+exercise focuses on one idea, uses idiomatic Rust, highlights ownership and
+borrowing decisions, and builds on the previous ones.&lt;&#x2F;p&gt;
+&lt;p&gt;If you can write and understand all of these, you&#x27;re no longer &quot;learning
+HashMap&quot;. You&#x27;re using it fluently.&lt;&#x2F;p&gt;</description>
+      </item>
+      <item>
+          <title>Hello World!</title>
+          <pubDate>Fri, 10 Jan 2025 00:00:00 +0000</pubDate>
+          <author>Iago Bozza</author>
+          <link>https://iagobozza.com/hello-world/</link>
+          <guid>https://iagobozza.com/hello-world/</guid>
+          <description xml:base="https://iagobozza.com/hello-world/">&lt;p&gt;Hello, world! 👋&lt;&#x2F;p&gt;
+&lt;p&gt;Welcome to my corner of the web, where I share experiments with code, and the
+occasional reflection on the intersection of logic and software engineering.&lt;&#x2F;p&gt;
+&lt;p&gt;I&#x27;m Iago Bozza — a philosopher-turned-software engineer. I specialize in
+building sites with Hugo, Next.js, and Supabase, and I’m currently diving deep
+into Rust as I progress through the OSSU curriculum.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;what-you-ll-find-here&quot;&gt;What You’ll Find Here&lt;&#x2F;h2&gt;
+&lt;p&gt;This blog is a space where I write about computer science and software
+development. Whether it’s design principles, programming languages, or tools I
+love (like Rust), you&#x27;ll find posts that aim to inform and inspire.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;a-little-about-me&quot;&gt;A Little About Me&lt;&#x2F;h2&gt;
+&lt;p&gt;Before venturing into the tech industry, I taught philosophy at the University
+of Miami, where I dealt with topics like logic, metaphysics, and epistemology.
+These experiences shaped my approach to problem-solving and structured
+thinking—skills I now apply to software engineering.&lt;&#x2F;p&gt;
+&lt;p&gt;Feel free to connect with me via GitHub or check out my &quot;About&quot; page for more
+details about my work and background.&lt;&#x2F;p&gt;
+&lt;p&gt;Thanks for stopping by, and cheers to learning together! 🎉&lt;&#x2F;p&gt;
+</description>
+      </item>
+    </channel>
+</rss>

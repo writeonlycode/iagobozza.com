@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Learning HashMaps in Rust by Solving 10 Small Problems | Iago Bozza</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://iagobozza.com/style.css">
+    <link rel="stylesheet" href="https://iagobozza.com/katex.min.css">
+
+    <!--KaTeX-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.19/dist/katex.min.css" integrity="sha384-7lU0muIg/i1plk7MgygDUp3/bNRA65orrBub4/OSWHECgwEsY83HaS1x3bljA/XV" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.19/dist/katex.min.js" integrity="sha384-RdymN7NRJ+XoyeRY4185zXaxq9QWOOx3O7beyyrRK4KQZrPlCDQQpCu95FoCGPAE" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.19/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    <link rel="stylesheet" href="https://iagobozza.com/color/red-auto.css">
+
+        <link rel="stylesheet" href="https://iagobozza.com/color/background_auto.css">
+    
+    <link rel="stylesheet" href="https://iagobozza.com/font-hack-subset.css">
+
+    <meta name="description" content="Learn Rust HashMaps through 10 practical exercises. Master entry(), ownership, grouping, merging, filtering, and nested maps with clear examples.">
+
+    <meta property="og:description" content="Learn Rust HashMaps through 10 practical exercises. Master entry(), ownership, grouping, merging, filtering, and nested maps with clear examples.">
+    <meta property="og:title" content="Learning HashMaps in Rust by Solving 10 Small Problems | Iago Bozza">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://iagobozza.com/learning-rust-hashmaps-through-exercises/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="Learn Rust HashMaps through 10 practical exercises. Master entry(), ownership, grouping, merging, filtering, and nested maps with clear examples.">
+    <meta name="twitter:title" content="Learning HashMaps in Rust by Solving 10 Small Problems | Iago Bozza">
+    <meta property="twitter:domain" content="iagobozza.com">
+    <meta property="twitter:url" content="https://iagobozza.com/learning-rust-hashmaps-through-exercises/">
+
+                <link rel="alternate" type="application/rss+xml" title="Iago Bozza RSS Feed" href="https://iagobozza.com/rss.xml" />
+                <link rel="alternate" type="application/atom+xml" title="Iago Bozza Atom Feed" href="https://iagobozza.com/atom.xml" />
+    </head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://iagobozza.com" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Iago Bozza
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://iagobozza.com/tags">tags</a></li>
+            
+                <li><a href="https://iagobozza.com/archive">archive</a></li>
+            
+                <li><a href="https://iagobozza.com/about">about</a></li>
+            
+                <li><a href="https://github.com/writeonlycode/" target="_blank" rel="noopener noreferrer">github</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://iagobozza.com/learning-rust-hashmaps-through-exercises/">Learning HashMaps in Rust by Solving 10 Small Problems</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            2026-02-27
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://iagobozza.com/tags/hashmaps/">#hashmaps</a>&nbsp;
+                <a class="post-tag" href="https://iagobozza.com/tags/rust/">#rust</a></span>
+    
+
+        <div class="post-content">
+            <p>HashMaps are one of the most common data structures in Rust, and also one of
+the first places where ownership, borrowing, and references really start to
+matter.</p>
+<p>This post walks through 10 progressively more complex exercises that cover
+almost every practical HashMap pattern you'll use in real Rust code. Each
+exercise focuses on one idea, uses idiomatic Rust, highlights ownership and
+borrowing decisions, and builds on the previous ones.</p>
+<p>If you can write and understand all of these, you're no longer "learning
+HashMap". You're using it fluently.</p>
+<span id="continue-reading"></span>
+<hr />
+<h2 id="prerequisites">Prerequisites</h2>
+<p>You should be comfortable with basic Rust syntax, <code>Vec</code>, <code>&amp;str</code>, <code>String</code>,
+ownership vs borrowing, and iterators and <code>for</code> loops.</p>
+<p>We’ll use only the standard library:</p>
+<pre class="giallo" style="color: #E1E4E8; background-color: #24292E;"><code data-lang="rust"><span class="giallo-l"><span style="color: #F97583;">use</span><span style="color: #B392F0;"> std</span><span style="color: #F97583;">::</span><span style="color: #B392F0;">collections</span><span style="color: #F97583;">::</span><span style="color: #B392F0;">HashMap</span><span>;</span></span></code></pre>
+<hr />
+<h2 id="1-counting-words-the-canonical-hashmap-problem">1. Counting words (the canonical HashMap problem)</h2>
+<p><strong>Goal:</strong> Learn the <code>entry()</code> + <code>or_insert()</code> pattern.</p>
+<pre class="giallo" style="color: #E1E4E8; background-color: #24292E;"><code data-lang="rust"><span class="giallo-l"><span style="color: #F97583;">pub fn</span><span style="color: #B392F0;"> word_count</span><span>(words</span><span style="color: #F97583;">: &amp;</span><span>[</span><span style="color: #F97583;">&amp;</span><span style="color: #B392F0;">str</span><span>])</span><span style="color: #F97583;"> -&gt;</span><span style="color: #B392F0;"> HashMap</span><span>&lt;</span><span style="color: #B392F0;">String</span><span>,</span><span style="color: #B392F0;"> usize</span><span>&gt; {</span></span>
+<span class="giallo-l"><span style="color: #F97583;">    let mut</span><span> map</span><span style="color: #F97583;"> =</span><span style="color: #B392F0;"> HashMap</span><span style="color: #F97583;">::</span><span style="color: #B392F0;">new</span><span>();</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #F97583;">    for</span><span> word</span><span style="color: #F97583;"> in</span><span> words {</span></span>
+<span class="giallo-l"><span style="color: #F97583;">        *</span><span>map</span><span style="color: #F97583;">.</span><span style="color: #B392F0;">entry</span><span>(word</span><span style="color: #F97583;">.</span><span style="color: #B392F0;">to_string</span><span>())</span><span style="color: #F97583;">.</span><span style="color: #B392F0;">or_insert</span><span>(</span><span style="color: #79B8FF;">0</span><span>)</span><span style="color: #F97583;"> +=</span><span style="color: #79B8FF;"> 1</span><span>;</span></span>
+<span class="giallo-l"><span>    }</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>    map</span></span>
+<span class="giallo-l"><span>}</span></span></code></pre>
+<p>This is usually the first real problem people solve with a hash map, and in
+Rust it introduces the most important part of the API: <code>entry()</code>. Instead of
+checking whether a key exists and then updating or inserting manually,
+<code>entry()</code> gives you a handle that represents <em>either</em> case. Calling
+<code>or_insert(0)</code> ensures a value is present and returns a mutable reference to
+it.</p>
+<p>That return type is the key detail: <code>or_insert</code> yields a <code>&amp;mut usize</code>, not a
+value. Rust requires you to explicitly dereference it before mutating, which is
+why the <code>*</code> is necessary. This may feel a bit verbose at first, but it’s Rust
+making mutation explicit and safe.</p>
+<p>You’ll see this exact pattern -- <code>*map.entry(key).or_insert(0) += 1</code> -- over
+and over again in real Rust code, from frequency counters to aggregations. Once
+it clicks, working with <code>HashMap</code> stops feeling awkward and starts feeling
+precise and powerful.</p>
+<hr />
+<h2 id="2-character-frequency">2. Character frequency</h2>
+<p><strong>Goal:</strong> Same idea, different key type.</p>
+<pre class="giallo" style="color: #E1E4E8; background-color: #24292E;"><code data-lang="rust"><span class="giallo-l"><span style="color: #F97583;">pub fn</span><span style="color: #B392F0;"> char_frequency</span><span>(s</span><span style="color: #F97583;">: &amp;</span><span style="color: #B392F0;">str</span><span>)</span><span style="color: #F97583;"> -&gt;</span><span style="color: #B392F0;"> HashMap</span><span>&lt;</span><span style="color: #B392F0;">char</span><span>,</span><span style="color: #B392F0;"> usize</span><span>&gt; {</span></span>
+<span class="giallo-l"><span style="color: #F97583;">    let mut</span><span> map</span><span style="color: #F97583;"> =</span><span style="color: #B392F0;"> HashMap</span><span style="color: #F97583;">::</span><span style="color: #B392F0;">new</span><span>();</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #F97583;">    for</span><span> c</span><span style="color: #F97583;"> in</span><span> s</span><span style="color: #F97583;">.</span><span style="color: #B392F0;">chars</span><span>() {</span></span>
+<span class="giallo-l"><span style="color: #F97583;">        *</span><span>map</span><span style="color: #F97583;">.</span><span style="color: #B392F0;">entry</span><span>(c)</span><span style="color: #F97583;">.</span><span style="color: #B392F0;">or_insert</span><span>(</span><span style="color: #79B8FF;">0</span><span>)</span><span style="color: #F97583;"> +=</span><span style="color: #79B8FF;"> 1</span><span>;</span></span>
+<span class="giallo-l"><span>    }</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>    map</span></span>
+<span class="giallo-l"><span>}</span></span></code></pre>
+<p>This example reinforces that the <code>entry()</code> pattern is completely independent of
+the key type. Instead of owned <code>String</code>s, we’re now using <code>char</code> keys produced
+by iterating over the string. Because <code>char</code> is a small, <code>Copy</code> type, we can
+insert it directly into the map without any allocation or cloning.</p>
+<p>What’s important here is that nothing about the counting logic changes. Once
+you understand how <code>entry()</code> and <code>or_insert()</code> work, switching from words to
+characters—or to any other key type—is mostly mechanical. This is a recurring
+theme in Rust: the hard part is learning the pattern; applying it to different
+data is easy.</p>
+<p>The repetition is intentional. By solving the same problem with a slightly
+different shape, you start to see <code>HashMap</code> as a flexible tool rather than a
+special-case container.</p>
+<hr />
+<h2 id="3-safe-lookup-with-a-default-value">3. Safe lookup with a default value</h2>
+<p><strong>Goal:</strong> Read from a <code>HashMap</code> without panicking.</p>
+<pre class="giallo" style="color: #E1E4E8; background-color: #24292E;"><code data-lang="rust"><span class="giallo-l"><span style="color: #F97583;">pub fn</span><span style="color: #B392F0;"> get_score</span><span>(scores</span><span style="color: #F97583;">: &amp;</span><span style="color: #B392F0;">HashMap</span><span>&lt;</span><span style="color: #B392F0;">String</span><span>,</span><span style="color: #B392F0;"> i32</span><span>&gt;, name</span><span style="color: #F97583;">: &amp;</span><span style="color: #B392F0;">str</span><span>)</span><span style="color: #F97583;"> -&gt;</span><span style="color: #B392F0;"> i32</span><span> {</span></span>
+<span class="giallo-l"><span style="color: #F97583;">    *</span><span>scores</span><span style="color: #F97583;">.</span><span style="color: #B392F0;">get</span><span>(name)</span><span style="color: #F97583;">.</span><span style="color: #B392F0;">unwrap_or</span><span>(</span><span style="color: #F97583;">&amp;</span><span style="color: #79B8FF;">0</span><span>)</span></span>
+<span class="giallo-l"><span>}</span></span></code></pre>
+<p>This example shifts focus from insertion to safe reading. When you call <code>get</code>,
+Rust returns an <code>Option&lt;&amp;i32&gt;</code>, not the value itself. That’s deliberate: the
+key might not exist, and Rust forces you to acknowledge that possibility.
+Instead of unwrapping and risking a panic, we provide a fallback with
+<code>unwrap_or(&amp;0)</code>.</p>
+<p>Notice that the fallback is a reference to <code>0</code>, not just <code>0</code>. That’s because
+<code>get</code> returns a reference, so the types must match. After that, we dereference
+the result with <code>*</code> to obtain the actual <code>i32</code>. Since <code>i32</code> implements <code>Copy</code>,
+dereferencing simply copies the value out—no ownership complications, no moves.</p>
+<p>The pattern here is subtle but important: you borrow from the map, supply a
+safe default, and only then copy the value if needed. It’s a compact example of
+how Rust combines <code>Option</code>, references, and the type system to eliminate whole
+classes of runtime errors while keeping the code concise and expressive.</p>
+<hr />
+<h2 id="4-merging-two-hashmaps">4. Merging two HashMaps</h2>
+<p><strong>Goal:</strong> Combine values with the same key.</p>
+<pre class="giallo" style="color: #E1E4E8; background-color: #24292E;"><code data-lang="rust"><span class="giallo-l"><span style="color: #F97583;">pub fn</span><span style="color: #B392F0;"> merge_counts</span><span>( a</span><span style="color: #F97583;">:</span><span style="color: #B392F0;"> HashMap</span><span>&lt;</span><span style="color: #B392F0;">String</span><span>,</span><span style="color: #B392F0;"> usize</span><span>&gt;, b</span><span style="color: #F97583;">:</span><span style="color: #B392F0;"> HashMap</span><span>&lt;</span><span style="color: #B392F0;">String</span><span>,</span><span style="color: #B392F0;"> usize</span><span>&gt;,)</span><span style="color: #F97583;"> -&gt;</span><span style="color: #B392F0;"> HashMap</span><span>&lt;</span><span style="color: #B392F0;">String</span><span>,</span><span style="color: #B392F0;"> usize</span><span>&gt; {</span></span>
+<span class="giallo-l"><span style="color: #F97583;">    let mut</span><span> map</span><span style="color: #F97583;"> =</span><span> a;</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #F97583;">    for</span><span> (key, value)</span><span style="color: #F97583;"> in</span><span> b {</span></span>
+<span class="giallo-l"><span style="color: #F97583;">        *</span><span>map</span><span style="color: #F97583;">.</span><span style="color: #B392F0;">entry</span><span>(key)</span><span style="color: #F97583;">.</span><span style="color: #B392F0;">or_insert</span><span>(</span><span style="color: #79B8FF;">0</span><span>)</span><span style="color: #F97583;"> +=</span><span> value;</span></span>
+<span class="giallo-l"><span>    }</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>    map</span></span>
+<span class="giallo-l"><span>}</span></span></code></pre>
+<p>This function builds directly on the counting pattern, but now applied across
+two maps. By taking ownership of both <code>a</code> and <code>b</code>, it avoids any need for
+cloning: <code>a</code> becomes the base map, and <code>b</code> is consumed as we iterate over it.
+Each key–value pair from <code>b</code> is moved into the result, and if the key already
+exists, its value is incremented rather than replaced.</p>
+<p>The important detail is that <code>entry</code> works just as well when merging as it does
+when counting from scratch. Whether a key is new or already present, the logic
+stays the same, which makes this pattern easy to reuse and reason about. The
+result is code that is both efficient—because it moves data instead of copying
+it. And expressive, because the intent (“add these counts together”) is
+immediately clear.</p>
+<hr />
+<h2 id="5-finding-the-most-frequent-entry">5. Finding the most frequent entry</h2>
+<p><strong>Goal:</strong> Iterate over entries and return a derived value.</p>
+<pre class="giallo" style="color: #E1E4E8; background-color: #24292E;"><code data-lang="rust"><span class="giallo-l"><span style="color: #F97583;">pub fn</span><span style="color: #B392F0;"> most_frequent</span><span>(map</span><span style="color: #F97583;">: &amp;</span><span style="color: #B392F0;">HashMap</span><span>&lt;</span><span style="color: #B392F0;">String</span><span>,</span><span style="color: #B392F0;"> usize</span><span>&gt;)</span><span style="color: #F97583;"> -&gt;</span><span style="color: #B392F0;"> Option</span><span>&lt;</span><span style="color: #B392F0;">String</span><span>&gt; {</span></span>
+<span class="giallo-l"><span>    map</span><span style="color: #F97583;">.</span><span style="color: #B392F0;">iter</span><span>()</span></span>
+<span class="giallo-l"><span style="color: #F97583;">        .</span><span style="color: #B392F0;">max_by_key</span><span>(</span><span style="color: #F97583;">|</span><span>(_, count)</span><span style="color: #F97583;">| *</span><span>count)</span></span>
+<span class="giallo-l"><span style="color: #F97583;">        .</span><span style="color: #B392F0;">map</span><span>(</span><span style="color: #F97583;">|</span><span>(key, _)</span><span style="color: #F97583;">|</span><span> key</span><span style="color: #F97583;">.</span><span style="color: #B392F0;">clone</span><span>())</span></span>
+<span class="giallo-l"><span>}</span></span></code></pre>
+<p>This example moves from mutation to analysis. Instead of inserting or merging,
+we iterate over the existing entries and compute a derived result. Calling
+<code>iter()</code> yields <code>(&amp;K, &amp;V)</code>, meaning we’re borrowing both the keys and the
+values. Nothing is moved out of the map, and the function remains read-only.</p>
+<p><code>max_by_key</code> is where the intent becomes explicit. Rather than manually
+tracking the “largest so far,” we tell Rust exactly what we want: select the
+entry with the maximum <code>count</code>. The closure receives references, so we
+dereference <code>count</code> to compare its numeric value.</p>
+<p>Finally, we convert from <code>Option&lt;(&amp;String, &amp;usize)&gt;</code> to <code>Option&lt;String&gt;</code> using
+<code>map</code>. The only allocation happens at the boundary, where we clone the key for
+the return value. Everything else stays borrowed. This is a common Rust
+pattern: iterate by reference for efficiency, then clone only when you must
+hand ownership to the caller.</p>
+<p>The result is compact, expressive, and avoids unnecessary work. Very much in
+line with idiomatic Rust design.</p>
+<hr />
+<h2 id="6-grouping-values-hashmap-of-vecs">6. Grouping values (HashMap of Vecs)</h2>
+<p><strong>Goal:</strong> Store multiple values per key.</p>
+<pre class="giallo" style="color: #E1E4E8; background-color: #24292E;"><code data-lang="rust"><span class="giallo-l"><span style="color: #F97583;">pub fn</span><span style="color: #B392F0;"> group_by_first_letter</span><span>(words</span><span style="color: #F97583;">: &amp;</span><span>[</span><span style="color: #F97583;">&amp;</span><span style="color: #B392F0;">str</span><span>])</span><span style="color: #F97583;"> -&gt;</span><span style="color: #B392F0;"> HashMap</span><span>&lt;</span><span style="color: #B392F0;">char</span><span>,</span><span style="color: #B392F0;"> Vec</span><span>&lt;</span><span style="color: #B392F0;">String</span><span>&gt;&gt; {</span></span>
+<span class="giallo-l"><span style="color: #F97583;">    let mut</span><span> map</span><span style="color: #F97583;"> =</span><span style="color: #B392F0;"> HashMap</span><span style="color: #F97583;">::</span><span style="color: #B392F0;">new</span><span>();</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #F97583;">    for</span><span> word</span><span style="color: #F97583;"> in</span><span> words {</span></span>
+<span class="giallo-l"><span style="color: #F97583;">        if let</span><span style="color: #B392F0;"> Some</span><span>(first_char)</span><span style="color: #F97583;"> =</span><span> word</span><span style="color: #F97583;">.</span><span style="color: #B392F0;">chars</span><span>()</span><span style="color: #F97583;">.</span><span style="color: #B392F0;">next</span><span>() {</span></span>
+<span class="giallo-l"><span>            map</span><span style="color: #F97583;">.</span><span style="color: #B392F0;">entry</span><span>(first_char)</span></span>
+<span class="giallo-l"><span style="color: #F97583;">                .</span><span style="color: #B392F0;">or_insert_with</span><span>(</span><span style="color: #B392F0;">Vec</span><span style="color: #F97583;">::</span><span>new)</span></span>
+<span class="giallo-l"><span style="color: #F97583;">                .</span><span style="color: #B392F0;">push</span><span>(word</span><span style="color: #F97583;">.</span><span style="color: #B392F0;">to_string</span><span>());</span></span>
+<span class="giallo-l"><span>        }</span></span>
+<span class="giallo-l"><span>    }</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>    map</span></span>
+<span class="giallo-l"><span>}</span></span></code></pre>
+<p>This exercise introduces a very common variation of the <code>entry</code> pattern:
+storing <em>collections</em> as values. Instead of counting, each key maps to a <code>Vec</code>
+that accumulates multiple items. Conceptually, this is how you model "group by"
+operations in Rust.</p>
+<p>The key detail is the use of <code>or_insert_with(Vec::new)</code>. Unlike
+<code>or_insert(Vec::new())</code>, which would eagerly allocate a vector even when the
+key already exists, <code>or_insert_with</code> only constructs the <code>Vec</code> when it's
+actually needed. That keeps the code efficient while remaining clear and
+expressive.</p>
+<p>Once the entry exists, <code>push</code> works exactly as you'd expect: you get mutable
+access to the vector and append a new value. This pattern shows up
+everywhere—grouping records, building indices, or collecting results by
+category—and mastering it is a big step toward writing fluent, idiomatic Rust.</p>
+<hr />
+<h2 id="7-inverting-a-hashmap">7. Inverting a HashMap</h2>
+<p><strong>Goal:</strong> Swap keys and values.</p>
+<pre class="giallo" style="color: #E1E4E8; background-color: #24292E;"><code data-lang="rust"><span class="giallo-l"><span style="color: #F97583;">pub fn</span><span style="color: #B392F0;"> invert_map</span><span>(map</span><span style="color: #F97583;">:</span><span style="color: #B392F0;"> HashMap</span><span>&lt;</span><span style="color: #B392F0;">String</span><span>,</span><span style="color: #B392F0;"> i32</span><span>&gt;)</span><span style="color: #F97583;"> -&gt;</span><span style="color: #B392F0;"> HashMap</span><span>&lt;</span><span style="color: #B392F0;">i32</span><span>,</span><span style="color: #B392F0;"> String</span><span>&gt; {</span></span>
+<span class="giallo-l"><span style="color: #F97583;">    let mut</span><span> inverted</span><span style="color: #F97583;"> =</span><span style="color: #B392F0;"> HashMap</span><span style="color: #F97583;">::</span><span style="color: #B392F0;">new</span><span>();</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #F97583;">    for</span><span> (key, value)</span><span style="color: #F97583;"> in</span><span> map {</span></span>
+<span class="giallo-l"><span>        inverted</span><span style="color: #F97583;">.</span><span style="color: #B392F0;">insert</span><span>(value, key);</span></span>
+<span class="giallo-l"><span>    }</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>    inverted</span></span>
+<span class="giallo-l"><span>}</span></span></code></pre>
+<p>This example is all about ownership and intent. By taking the input <code>HashMap</code>
+by value, the function is free to <em>consume</em> it, moving each key–value pair out
+without cloning. That makes the transformation both simple and efficient: we
+iterate over the original map, swap the positions of <code>key</code> and <code>value</code>, and
+insert them into a new one.</p>
+<p>The important subtlety is semantic rather than technical. A <code>HashMap</code> can only
+have one value per key, so if the original map contains duplicate values, later
+inserts will overwrite earlier ones. Rust doesn't prevent this because it's not
+a correctness issue. It's a modeling choice. In some cases this behavior is
+exactly what you want; in others, you might prefer a <code>HashMap&lt;i32, Vec&lt;String&gt;&gt;</code> to preserve all associations.</p>
+<p>This exercise highlights a recurring theme in Rust: the type you choose encodes
+the guarantees you get. Here, the choice of <code>HashMap&lt;i32, String&gt;</code> explicitly
+says “one key wins,” and the code cleanly enforces that decision.</p>
+<hr />
+<h2 id="8-filtering-entries">8. Filtering entries</h2>
+<p><strong>Goal:</strong> Build a new <code>HashMap</code> from a predicate.</p>
+<pre class="giallo" style="color: #E1E4E8; background-color: #24292E;"><code data-lang="rust"><span class="giallo-l"><span style="color: #F97583;">pub fn</span><span style="color: #B392F0;"> filter_above</span><span>(map</span><span style="color: #F97583;">: &amp;</span><span style="color: #B392F0;">HashMap</span><span>&lt;</span><span style="color: #B392F0;">String</span><span>,</span><span style="color: #B392F0;"> i32</span><span>&gt;, threshold</span><span style="color: #F97583;">:</span><span style="color: #B392F0;"> i32</span><span>)</span><span style="color: #F97583;"> -&gt;</span><span style="color: #B392F0;"> HashMap</span><span>&lt;</span><span style="color: #B392F0;">String</span><span>,</span><span style="color: #B392F0;"> i32</span><span>&gt; {</span></span>
+<span class="giallo-l"><span style="color: #F97583;">    let mut</span><span> filtered</span><span style="color: #F97583;"> =</span><span style="color: #B392F0;"> HashMap</span><span style="color: #F97583;">::</span><span style="color: #B392F0;">new</span><span>();</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #F97583;">    for</span><span> (key, value)</span><span style="color: #F97583;"> in</span><span> map {</span></span>
+<span class="giallo-l"><span style="color: #F97583;">        if *</span><span>value</span><span style="color: #F97583;"> &gt;</span><span> threshold {</span></span>
+<span class="giallo-l"><span>            filtered</span><span style="color: #F97583;">.</span><span style="color: #B392F0;">insert</span><span>(key</span><span style="color: #F97583;">.</span><span style="color: #B392F0;">clone</span><span>(),</span><span style="color: #F97583;"> *</span><span>value);</span></span>
+<span class="giallo-l"><span>        }</span></span>
+<span class="giallo-l"><span>    }</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>    filtered</span></span>
+<span class="giallo-l"><span>}</span></span></code></pre>
+<p>This exercise focuses on selective ownership. The input map is borrowed, which
+means we’re not allowed to move anything out of it. Instead, we iterate over
+references and decide which entries are worth keeping based on a simple
+predicate.</p>
+<p>When a value passes the threshold check, we explicitly clone the key and copy
+the value into the new map. That makes the ownership boundary very clear: only
+the entries that survive the filter are duplicated, and everything else remains
+borrowed. Since <code>i32</code> implements <code>Copy</code>, dereferencing <code>value</code> is cheap and
+natural.</p>
+<p>While this could be written using iterator chains like <code>filter</code> and <code>collect</code>,
+the explicit loop keeps the logic readable and approachable. In Rust, clarity
+often beats cleverness. Especially when ownership and borrowing are part of the
+lesson.</p>
+<hr />
+<h2 id="9-counting-with-ownership">9. Counting with ownership</h2>
+<p><strong>Goal:</strong> Consume a collection.</p>
+<pre class="giallo" style="color: #E1E4E8; background-color: #24292E;"><code data-lang="rust"><span class="giallo-l"><span style="color: #F97583;">pub fn</span><span style="color: #B392F0;"> count_numbers</span><span>(nums</span><span style="color: #F97583;">:</span><span style="color: #B392F0;"> Vec</span><span>&lt;</span><span style="color: #B392F0;">i32</span><span>&gt;)</span><span style="color: #F97583;"> -&gt;</span><span style="color: #B392F0;"> HashMap</span><span>&lt;</span><span style="color: #B392F0;">i32</span><span>,</span><span style="color: #B392F0;"> usize</span><span>&gt; {</span></span>
+<span class="giallo-l"><span style="color: #F97583;">    let mut</span><span> count</span><span style="color: #F97583;"> =</span><span style="color: #B392F0;"> HashMap</span><span style="color: #F97583;">::</span><span style="color: #B392F0;">new</span><span>();</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #F97583;">    for</span><span> n</span><span style="color: #F97583;"> in</span><span> nums {</span></span>
+<span class="giallo-l"><span style="color: #F97583;">        *</span><span>count</span><span style="color: #F97583;">.</span><span style="color: #B392F0;">entry</span><span>(n)</span><span style="color: #F97583;">.</span><span style="color: #B392F0;">or_insert</span><span>(</span><span style="color: #79B8FF;">0</span><span>)</span><span style="color: #F97583;"> +=</span><span style="color: #79B8FF;"> 1</span><span>;</span></span>
+<span class="giallo-l"><span>    }</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>    count</span></span>
+<span class="giallo-l"><span>}</span></span></code></pre>
+<p>This example looks almost identical to earlier counting patterns, but the key
+difference is in the function signature. By taking <code>Vec&lt;i32&gt;</code> by value, the
+function consumes the collection. That small choice removes an entire layer of
+complexity: there’s no borrowing, no references to juggle, and no need to clone
+anything.</p>
+<p>Each number is moved directly out of the vector and into the <code>HashMap</code> as a
+key. Since <code>i32</code> implements <code>Copy</code>, even that movement is trivial. The <code>entry</code>
+pattern works exactly as before, but now the ownership model is as simple as it
+can possibly be.</p>
+<p>This illustrates a powerful Rust principle: if your function logically owns the
+data, accept ownership in the type signature. Doing so often eliminates
+lifetime concerns and reduces mental overhead. When you can take ownership
+cleanly, the code tends to become both simpler and more robust.</p>
+<hr />
+<h2 id="10-nested-hashmaps-real-world-aggregation">10. Nested HashMaps (real-world aggregation)</h2>
+<p><strong>Goal:</strong> HashMap of HashMaps.</p>
+<pre class="giallo" style="color: #E1E4E8; background-color: #24292E;"><code data-lang="rust"><span class="giallo-l"><span style="color: #F97583;">pub fn</span><span style="color: #B392F0;"> tally_scores</span><span>(entries</span><span style="color: #F97583;">:</span><span style="color: #B392F0;"> Vec</span><span>&lt;(</span><span style="color: #F97583;">&amp;</span><span style="color: #B392F0;">str</span><span>,</span><span style="color: #F97583;"> &amp;</span><span style="color: #B392F0;">str</span><span>,</span><span style="color: #B392F0;"> i32</span><span>)&gt;)</span><span style="color: #F97583;"> -&gt;</span><span style="color: #B392F0;"> HashMap</span><span>&lt;</span><span style="color: #B392F0;">String</span><span>,</span><span style="color: #B392F0;"> HashMap</span><span>&lt;</span><span style="color: #B392F0;">String</span><span>,</span><span style="color: #B392F0;"> i32</span><span>&gt;&gt; {</span></span>
+<span class="giallo-l"><span style="color: #F97583;">    let mut</span><span> tally</span><span style="color: #F97583;"> =</span><span style="color: #B392F0;"> HashMap</span><span style="color: #F97583;">::</span><span style="color: #B392F0;">new</span><span>();</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #F97583;">    for</span><span> (player, game, score)</span><span style="color: #F97583;"> in</span><span> entries {</span></span>
+<span class="giallo-l"><span style="color: #F97583;">        *</span><span>tally</span></span>
+<span class="giallo-l"><span style="color: #F97583;">            .</span><span style="color: #B392F0;">entry</span><span>(player</span><span style="color: #F97583;">.</span><span style="color: #B392F0;">to_string</span><span>())</span></span>
+<span class="giallo-l"><span style="color: #F97583;">            .</span><span style="color: #B392F0;">or_insert_with</span><span>(</span><span style="color: #B392F0;">HashMap</span><span style="color: #F97583;">::</span><span>new)</span></span>
+<span class="giallo-l"><span style="color: #F97583;">            .</span><span style="color: #B392F0;">entry</span><span>(game</span><span style="color: #F97583;">.</span><span style="color: #B392F0;">to_string</span><span>())</span></span>
+<span class="giallo-l"><span style="color: #F97583;">            .</span><span style="color: #B392F0;">or_insert</span><span>(</span><span style="color: #79B8FF;">0</span><span>)</span><span style="color: #F97583;"> +=</span><span> score;</span></span>
+<span class="giallo-l"><span>    }</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>    tally</span></span>
+<span class="giallo-l"><span>}</span></span></code></pre>
+<p>This final exercise combines everything introduced so far into a pattern that
+closely resembles real production code. We're aggregating data across two
+dimensions: players and games, using a nested <code>HashMap</code>. Each outer key maps to
+another <code>HashMap</code>, which in turn accumulates numeric values.</p>
+<p>The logic flows from the outside in. First, we ensure that a map exists for a
+given player, creating one only when necessary with
+<code>or_insert_with(HashMap::new)</code>. From there, we immediately operate on the inner
+map, applying the familiar counting pattern to the game and score. Although the
+chaining looks dense at first glance, each step follows the same rules you've
+already learned.</p>
+<p>What's especially important here is how cleanly ownership is handled. The
+function consumes the input entries, allocates owned <code>String</code>s at the boundary,
+and mutates only the structures it owns. There are no lifetimes to track and no
+intermediate clones beyond what’s required for storage.</p>
+<p>This nested <code>entry</code> pattern is common in analytics, logging, metrics, and any
+kind of aggregation pipeline.</p>
+<p>Once you're comfortable reading and writing code like this, <code>HashMap</code>s stop
+feeling like a special case and start feeling like a natural extension of
+Rust's type system and ownership model!</p>
+
+        </div>
+
+        
+            <div class="pagination">
+                <div class="pagination__title">
+                    <span class="pagination__title-h">Thanks for reading! Read other posts?</span>
+                    <hr />
+                </div>
+                <div class="pagination__buttons">
+                        <span class="button previous">
+                            <a href="https://iagobozza.com/hello-world/">
+                                <span class="button__icon">←</span>&nbsp;
+                                <span class="button__text">Hello World!</span>
+                            </a>
+                        </span>
+                    
+                    </div>
+            </div>
+        
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user"> </div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>
