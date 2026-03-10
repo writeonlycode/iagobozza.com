@@ -1,19 +1,36 @@
-name: Publish demo on GitHub Pages
+name: Publish on GitHub Pages
 
 on:
- push:
-  branches:
-   - master
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   build:
-    name: Publish Site
     runs-on: ubuntu-latest
-    steps:
-    - name: Checkout Master
-      uses: actions/checkout@v3.0.0
-    - name: Build and Deploy
-      uses: shalzz/zola-deploy-action@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build site
+        run: |
+          curl -L https://github.com/getzola/zola/releases/latest/download/zola-x86_64-unknown-linux-gnu.tar.gz | tar xz
+          ./zola build
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+
+    steps:
+      - uses: actions/deploy-pages@v4
