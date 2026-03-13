@@ -5,10 +5,18 @@ path = "about"
 
 Cheers!
 
-I'm Iago Bozza, a philosopher-turned-software engineer. I work mostly with web
-development using Hugo SSG, Next.JS & Supabase, and I’m currently diving deep
-into the Rust programming language as I progress through the
-[OSSU](https://github.com/ossu/computer-science) curriculum.
+I’m a freelance developer based in Brazil.
+
+Before transitioning to software development, I completed a PhD in philosophy
+with a focus on **formal logic**. That background naturally led me toward
+programming, where similar principles of **precision, structure, and
+abstraction** apply.
+
+Today I focus on:
+
+- **Rust systems programming**
+- **developer tools and CLI applications**
+- **modern web development**
 
 Below you can find a little bit about me!
 

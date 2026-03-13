@@ -31,5 +31,6 @@ menu_items = [
     {name = "tags", url = "$BASE_URL/tags"},
     {name = "archive", url = "$BASE_URL/archive"},
     {name = "about", url = "$BASE_URL/about"},
+    {name = "portfolio", url = "$BASE_URL/portfolio"},
     {name = "github", url = "https://github.com/writeonlycode/", newtab = true},
 ]
