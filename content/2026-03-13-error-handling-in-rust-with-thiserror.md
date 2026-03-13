@@ -3,13 +3,23 @@ title = "Error Handling in Rust with thiserror"
 description = ""
 date = 2026-03-13
 authors = ["Iago Bozza"]
-draft = true
 
 [taxonomies]
 tags = ["rust", "thiserror"]
 +++
 
-Lorem ipsum.
+Rust handles errors differently from many other languages: instead of
+exceptions, failures are represented explicitly in the type system using
+`Result<T, E>`. This encourages developers to model errors as real data, making
+programs easier to reason about and maintain. In practice, this often means
+defining custom error types that describe what can go wrong in a particular
+domain. The `thiserror` crate simplifies this process by removing the
+boilerplate normally required to implement Rust's error traits, allowing
+developers to focus on designing clear and expressive error models.
+
+In this post, we walk through the fundamentals of structured error handling in
+Rust, explore how `thiserror` works, and show how to design practical error
+types for real applications.
 
 <!-- more -->
 
@@ -1103,53 +1113,253 @@ especially as a codebase grows.
 
 # 10. `thiserror` vs `anyhow`
 
-REDO AFTER 6:29PM
+At this point, you might be wondering how `thiserror` relates to another very
+popular crate in the Rust ecosystem: `anyhow`.
 
-10. thiserror vs anyhow
+Both crates deal with error handling, but they serve **different purposes** and
+are typically used in **different layers of a program**.
 
-Important conceptual section.
+A useful rule of thumb is:
 
-Explain difference:
+| crate       | use case                                                  |
+| ----------- | --------------------------------------------------------- |
+| `thiserror` | defining structured error types (especially in libraries) |
+| `anyhow`    | handling errors in applications                           |
 
-crate	use case
-thiserror	library error types
-anyhow	application error handling
+Understanding this distinction helps you design cleaner APIs and more
+maintainable code.
 
-Example:
+## `thiserror`: Structured Error Types
 
-Library:
+The purpose of `thiserror` is to help you **define error types**.
 
+When you write a library or a reusable module, you usually want callers to
+understand **what kinds of failures are possible**. That means returning a
+specific error type.
+
+For example:
+
+```rust
 pub fn parse_port(s: &str) -> Result<u16, ConfigError>
+```
 
-Application:
+Here the function communicates something precise: if parsing fails, it will
+return a `ConfigError`.
 
-fn main() -> anyhow::Result<()> 
+This allows callers to:
+
+* match on specific variants
+* recover from certain failures
+* handle errors programmatically
+
+Because of this, **libraries should usually expose structured error types**,
+and `thiserror` makes defining them ergonomic.
+
+## `anyhow`: Application Error Handling
+
+Applications often have different requirements.
+
+At the top level of a program—such as in a CLI tool—errors are typically
+**reported to the user and the program exits**. The application does not need
+to match on every possible failure.
+
+Instead of defining a large error enum, applications can use `anyhow::Error`,
+which is a **type-erased error container** capable of holding any error.
+
+This leads to very concise code.
+
+For example, a CLI program might define its entry point like this:
+
+```rust
+fn main() -> anyhow::Result<()> {
+    let port = parse_port("8080")?;
+    println!("Port: {}", port);
+    Ok(())
+}
+```
+
+Here, `anyhow::Result` is simply a convenient alias:
+
+```
+Result<T, anyhow::Error>
+```
+
+If `parse_port` returns a `ConfigError`, `anyhow` automatically converts it
+into `anyhow::Error`.
+
+The application doesn’t need to care about the exact error type. It simply
+propagates the error upward and prints it.
+
+## A Common Pattern
+
+In real Rust projects, you’ll often see these two crates used **together**.
+
+* **Libraries and modules**: define structured errors with `thiserror`
+* **Applications**: aggregate and propagate errors using `anyhow`
+
+For example:
+
+```
+library code
+   └── ConfigError (defined with thiserror)
+
+application code
+   └── main() -> anyhow::Result<()>
+```
+
+Errors defined with `thiserror` travel through the program, and `anyhow`
+collects them at the top level.
+
+This pattern provides the best of both worlds:
+
+* **structured errors** where they matter
+* **simple error propagation** at the application boundary
+
+## When to Use Each
+
+A practical guideline is:
+
+Use **`thiserror`** when:
+
+* designing library APIs
+* defining domain error types
+* modeling specific failure cases
+
+Use **`anyhow`** when:
+
+* writing binaries or CLI tools
+* you mainly want to propagate and print errors
+* you don’t need callers to match on error variants
+
+With this distinction in mind, you now have the core mental model behind modern
+Rust error handling: **structured error types inside libraries, flexible error
+aggregation at the application boundary**.
 
 # 11. Best Practices
 
-REDO AFTER 6:29PM
+Although `thiserror` is extremely useful, it is not always the right tool. Like
+many things in Rust, the best choice depends on the **level of structure your
+program actually needs**.
 
-11. When NOT to Use thiserror
+In some situations, defining a full custom error type adds unnecessary
+complexity. Knowing when **not** to use `thiserror` is just as important as
+knowing when to use it.
 
-Teach judgment.
+## Quick Scripts
 
-Cases:
+For small scripts or experimental programs, creating a structured error enum
+can be overkill.
 
-quick scripts
+Imagine a short utility that reads a file, parses a few numbers, and prints a
+result. The program might only have one place where errors are handled: the
+top-level `main` function.
 
-throwaway code
+In this case, defining an entire error type like:
 
-binaries using anyhow
+```rust
+#[derive(Debug, Error)]
+pub enum ScriptError {
+    Io(#[from] std::io::Error),
+    Parse(#[from] std::num::ParseIntError),
+}
+```
+
+doesn’t provide much benefit. The script is unlikely to need fine-grained error
+handling.
+
+Instead, it is usually simpler to rely on a generic error container such as
+`anyhow::Error`:
+
+```rust
+fn main() -> anyhow::Result<()> {
+    let contents = std::fs::read_to_string("numbers.txt")?;
+    println!("{}", contents);
+    Ok(())
+}
+```
+
+This keeps the code short and easy to write.
+
+## Throwaway Code
+
+Sometimes you are writing code that is **temporary by nature**:
+
+* a prototype
+* a one-off data migration
+* a quick debugging tool
+* a local experiment
+
+In these situations, spending time designing structured error types rarely pays
+off. A flexible error type like `anyhow::Error` is usually sufficient.
+
+If the code later grows into a real project, you can always introduce proper
+error types at that point.
+
+## Binaries Using `anyhow`
+
+Many Rust applications, especially CLI tools, use `anyhow` for top-level error
+handling.
+
+In these programs, errors often propagate upward until they reach `main`, where
+they are printed and the process exits.
+
+For example:
+
+```rust
+fn main() -> anyhow::Result<()> {
+    run()?;
+    Ok(())
+}
+```
+
+If the program is relatively simple and does not need to match on specific
+error variants, defining custom error enums may not provide much value.
+
+Instead, you can let different parts of the program return different error
+types and rely on `anyhow` to collect them.
+
+## The Trade-off
+
+Using `thiserror` provides **structure and clarity**, but it also introduces
+additional types and design decisions.
+
+For small programs, this extra structure may not be necessary.
+
+A good rule of thumb is:
+
+Use **`thiserror`** when:
+
+* your code defines a reusable library
+* callers need to react to specific failure cases
+* you want clearly modeled domain errors
+
+Avoid `thiserror` when:
+
+* the program is small and self-contained
+* errors are only printed to the user
+* structured error handling adds little value
+
+In practice, many Rust developers start a small project using `anyhow`, and
+only introduce `thiserror` once the code grows large enough that **structured
+error types become useful**.
 
 # 12. Final Example
 
-REDO AFTER 6:29PM
+Let’s bring everything together and build a realistic error type for a
+command-line application.
 
-12. Final Example: Real CLI Error Type
+A typical CLI tool might need to deal with several different kinds of failures:
 
-Combine everything.
+* configuration problems
+* invalid user input
+* file system errors
+* parsing errors
 
-Example:
+Using `thiserror`, we can define a single error type that captures all of these
+possibilities.
+
+```rust
+use thiserror::Error;
 
 #[derive(Debug, Error)]
 pub enum CliError {
@@ -1165,5 +1375,117 @@ pub enum CliError {
     #[error("parse error")]
     ParseInt(#[from] std::num::ParseIntError),
 }
+```
 
-Then show a real function using ?.
+This error type demonstrates several patterns we covered throughout the
+article:
+
+* **Domain errors**
+
+  * `ConfigMissing`
+  * `InvalidPort(u16)`
+
+* **Infrastructure errors**
+
+  * `Io(#[from] std::io::Error)`
+  * `ParseInt(#[from] std::num::ParseIntError)`
+
+* **Automatic conversions**
+
+  * `#[from]` allows external errors to be converted into `CliError`.
+
+This gives the CLI a **single unified error type** that represents everything
+that can go wrong.
+
+## Using the Error Type in Practice
+
+Now let’s look at how this error type can be used in a real function.
+
+Imagine we want to read a port number from a configuration file and parse it.
+
+```rust
+use std::fs;
+
+fn read_port(path: &str) -> Result<u16, CliError> {
+    let contents = fs::read_to_string(path)?;
+
+    let port: u16 = contents.trim().parse()?;
+
+    if port == 0 {
+        return Err(CliError::InvalidPort(port));
+    }
+
+    Ok(port)
+}
+```
+
+Notice how clean the code is:
+
+* `fs::read_to_string` may produce an `io::Error`
+* `.parse()` may produce a `ParseIntError`
+
+Because we added `#[from]` to our error enum, both of these errors are
+**automatically converted into `CliError`** when the `?` operator is used.
+
+No manual conversions are needed.
+
+## How Errors Flow Through the Program
+
+When an error occurs, it moves through the program like this:
+
+```
+std::io::Error
+        ↓
+CliError::Io
+        ↓
+returned from read_port()
+```
+
+or
+
+```
+ParseIntError
+        ↓
+CliError::ParseInt
+        ↓
+returned from read_port()
+```
+
+This makes it easy for higher-level code to either:
+
+* propagate the error further, or
+* match on specific variants and handle them differently.
+
+## A Simple `main` Function
+
+At the top level of a CLI application, errors are often printed and the program
+exits.
+
+For example:
+
+```rust
+fn main() -> Result<(), CliError> {
+    let port = read_port("config.txt")?;
+    println!("Server will run on port {}", port);
+    Ok(())
+}
+```
+
+If something goes wrong, Rust will display the formatted error message defined
+in the enum.
+
+## The Big Picture
+
+With just a small amount of code, we now have:
+
+* structured error types
+* meaningful error messages
+* automatic error conversions
+* clean error propagation with `?`
+* a unified error model for the entire CLI
+
+This is exactly what `thiserror` was designed to make easy.
+
+Instead of writing repetitive boilerplate, we can focus on **modeling the real
+failures of our program**, while Rust and `thiserror` take care of the rest.
+

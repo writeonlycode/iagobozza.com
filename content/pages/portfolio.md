@@ -46,7 +46,7 @@ curl https://data.gharchive.org/2026-03-11-15.json.gz
 
 ### Streaming Pipeline Architecture
 
-```bash
+```
 input stream
 ↓
 BufReader
