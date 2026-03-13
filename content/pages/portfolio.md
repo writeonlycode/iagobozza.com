@@ -71,3 +71,4 @@ using only a few megabytes of memory**.
 - End-to-end CLI testing using `assert_cmd`
 - Installable via `cargo install`
 
+---
