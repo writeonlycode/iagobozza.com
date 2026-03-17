@@ -1,6 +1,6 @@
 +++
 title = "About"
-path = "about"
+path = "/about"
 +++
 
 Cheers!
@@ -49,3 +49,6 @@ Below you can find a little bit about me!
 - Federal University of Ouro Preto\
   Bachelor and Licentiate in Philosophy, 2006-2012
 
+# Skills
+
+`rust`, `anyhow`, `thiserror`, `serde`, `serde_json`

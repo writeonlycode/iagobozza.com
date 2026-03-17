@@ -3,7 +3,6 @@ title = "Hello World!"
 description = "Welcome! ."
 date = 2025-01-10
 authors = ["Iago Bozza"]
-draft = false
 
 [taxonomies]
 tags = ["welcome"]
