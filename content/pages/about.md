@@ -7,23 +7,25 @@ Cheers!
 
 I’m a freelance developer based in Brazil.
 
-Before transitioning to software development, I completed a PhD in philosophy
-with a focus on **formal logic**. That background naturally led me toward
-programming, where similar principles of **precision, structure, and
-abstraction** apply.
+Before transitioning to software development, I completed a PhD in philosophy with a focus on **formal logic**. That background naturally led me toward programming, where similar principles of **precision, structure, and abstraction** apply.
 
 Today I focus on:
 
-- **Rust systems programming**
-- **developer tools and CLI applications**
-- **modern web development**
+- **systems programming with Rust**
+- **high-performance CLI tools**
+- **data pipelines and web scraping**
+- **modern web development with Hugo & Next.js**
 
 Below you can find a little bit about me!
 
 # Work
 
+- **Rust Developer (CLI Tools & Data Pipelines)**  
+  Designing and building high-performance command-line tools for data processing, automation, scraping, and lead generation using Rust.\
+  2026-present
+
 - **Freelance Web Developer**\
-  Working with Hugo, Next.JS & Supabase\
+  Developed and maintained production websites and applications using Hugo, Next.js, and Supabase. Focus on performance, clean architecture, and maintainability.\
   2020-present
 
 - **Instructor at University of Miami**\
@@ -51,4 +53,5 @@ Below you can find a little bit about me!
 
 # Skills
 
-`rust`, `anyhow`, `thiserror`, `serde`, `serde_json`
+`rust`, `anyhow`, `thiserror`, `serde`, `serde_json`, `reqwest`, `tokio`, `futures`, `clap`
+
