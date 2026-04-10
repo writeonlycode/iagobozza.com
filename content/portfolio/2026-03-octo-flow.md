@@ -1,12 +1,12 @@
 +++
-title = "Octo Flow"
+title = "Octo-Flow: A High-Performance CLI for Processing Large GitHub Event Datasets"
 description = "High-performance Rust CLI for processing large GitHub event datasets"
 date = 2026-03-01
 authors = ["Iago Bozza"]
 draft = false
 
 [taxonomies]
-tags = ["portfolio", "rust"]
+tags = ["portfolio", "rust", "streaming", "json", "cli", "github"]
 +++
 
 * **GitHub:** [https://github.com/writeonlycode/octo-flow](https://github.com/writeonlycode/octo-flow)
